@@ -2,8 +2,32 @@ package main
 
 import (
 	"fmt"
+	"github.com/clemans/net.clemans.Learning.Go/internal/handlers"
 	"github.com/go-chi/chi"
-	"github.com/clemans/net.clemans.Learning.Go/internal/handler"
 	log "github.com/sirupsen/logrus"
 	"net/http"
 )
+
+func main() {
+	log.SetReportCaller(true)
+	var r *chi.Mux = chi.NewRouter()
+	handlers.Handler(r)
+	fmt.Println("Starting API Service...")
+	fmt.Println(`
+	
+	██▓    ▓█████ ▄▄▄       ██▀███   ███▄    █  ██▓ ███▄    █   ▄████      ▄████  ▒█████   ██▓    ▄▄▄       ███▄    █   ▄████ 
+	▓██▒    ▓█   ▀▒████▄    ▓██ ▒ ██▒ ██ ▀█   █ ▓██▒ ██ ▀█   █  ██▒ ▀█▒    ██▒ ▀█▒▒██▒  ██▒▓██▒   ▒████▄     ██ ▀█   █  ██▒ ▀█▒
+	▒██░    ▒███  ▒██  ▀█▄  ▓██ ░▄█ ▒▓██  ▀█ ██▒▒██▒▓██  ▀█ ██▒▒██░▄▄▄░   ▒██░▄▄▄░▒██░  ██▒▒██░   ▒██  ▀█▄  ▓██  ▀█ ██▒▒██░▄▄▄░
+	▒██░    ▒▓█  ▄░██▄▄▄▄██ ▒██▀▀█▄  ▓██▒  ▐▌██▒░██░▓██▒  ▐▌██▒░▓█  ██▓   ░▓█  ██▓▒██   ██░▒██░   ░██▄▄▄▄██ ▓██▒  ▐▌██▒░▓█  ██▓
+	░██████▒░▒████▒▓█   ▓██▒░██▓ ▒██▒▒██░   ▓██░░██░▒██░   ▓██░░▒▓███▀▒   ░▒▓███▀▒░ ████▓▒░░██████▒▓█   ▓██▒▒██░   ▓██░░▒▓███▀▒
+	░ ▒░▓  ░░░ ▒░ ░▒▒   ▓▒█░░ ▒▓ ░▒▓░░ ▒░   ▒ ▒ ░▓  ░ ▒░   ▒ ▒  ░▒   ▒     ░▒   ▒ ░ ▒░▒░▒░ ░ ▒░▓  ░▒▒   ▓▒█░░ ▒░   ▒ ▒  ░▒   ▒ 
+	░ ░ ▒  ░ ░ ░  ░ ▒   ▒▒ ░  ░▒ ░ ▒░░ ░░   ░ ▒░ ▒ ░░ ░░   ░ ▒░  ░   ░      ░   ░   ░ ▒ ▒░ ░ ░ ▒  ░ ▒   ▒▒ ░░ ░░   ░ ▒░  ░   ░ 
+		░ ░      ░    ░   ▒     ░░   ░    ░   ░ ░  ▒ ░   ░   ░ ░ ░ ░   ░    ░ ░   ░ ░ ░ ░ ▒    ░ ░    ░   ▒      ░   ░ ░ ░ ░   ░ 
+			░  ░   ░  ░     ░  ░   ░              ░  ░           ░       ░          ░     ░ ░      ░  ░     ░  ░         ░       ░ 
+																																																														 
+	`)
+	err := http.ListenAndServe("localhost:56600", r)
+	if err != nil {
+		log.Error(err)
+	}
+}
